@@ -3,8 +3,11 @@
 a [Sails](http://sailsjs.org) application
 
 Database Setup:
+
 Install MySQL
+
 Create a database rgbycch
+
 Run SQL script `database/rgbycch.sql`
 
 To install Sails:
