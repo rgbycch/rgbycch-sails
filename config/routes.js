@@ -32,13 +32,19 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  // HTML Views
   '/': { view: 'homepage' },
-  'get /login': { view: 'user/login' },
-  'get /signup': { view: 'user/signup' },
-  '/welcome': { view: 'user/welcome' },
-  'post /login': 'UserController.login',
-  'post /signup': 'UserController.signup',
-  '/logout': 'UserController.logout'
+    'get /login': { view: 'user/login' },
+    'get /signup': { view: 'user/signup' },
+    '/welcome': { view: 'user/welcome' },
+
+    // Endpoints
+    'post /login': 'UserController.login',
+    'post /signup': 'UserController.signup',
+    '/club/:id': 'ClubController.getOne',
+    '/team/:id': 'TeamController.getOne',
+    '/player/:id': 'PlayerController.getOne',
+    '/logout': 'UserController.logout'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
