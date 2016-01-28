@@ -39,8 +39,8 @@ module.exports = {
             columnName: 'dob'
         },
 
-        userId : {
-            type: 'integer',
+        user : {
+            model: 'User',
             columnName: 'usr_fk'
         },
 
@@ -69,13 +69,54 @@ module.exports = {
      *                     • password {String}
      * @param  {Function} cb
      */
-
     getOne: function (inputs, cb) {
         console.error('retrieving player by id: '+inputs.id);
         // Find a player
         var player = Player.findOne({
                 id: inputs.id
             });
+        var user = User.findOne({ id: player.userId });
+        //player.attributes.email = user.email;
+        player.exec(cb);
+    },
+
+    /**
+     * Check validness of a login using the provided inputs.
+     * But encrypt the password first.
+     *
+     * @param  {Object}   inputs
+     *                     • email    {String}
+     *                     • password {String}
+     * @param  {Function} cb
+     */
+    createPlayer: function (inputs, cb) {
+        console.error('creating player with name: '
+            + inputs.first_name + ' ' + inputs.last_name);
+        // Create a player
+        Player.create({
+            first_name: inputs.first_name,
+            last_name: inputs.last_name,
+            nick_name: inputs.nick_name,
+            dob: inputs.dob,
+            user: inputs.user
+        }).exec(cb);
+    },
+
+    /**
+     * Check validness of a login using the provided inputs.
+     * But encrypt the password first.
+     *
+     * @param  {Object}   inputs
+     *                     • email    {String}
+     *                     • password {String}
+     * @param  {Function} cb
+     */
+    update: function (inputs, cb) {
+        console.error('retrieving player by id: '+inputs.id);
+        // Find a player
+        var player = Player.findOne({
+            id: inputs.id
+        });
         var user = User.findOne({ id: player.userId });
         //player.attributes.email = user.email;
         player.exec(cb);

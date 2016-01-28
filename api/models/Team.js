@@ -44,7 +44,6 @@ module.exports = {
      *                     • password {String}
      * @param  {Function} cb
      */
-
     getOne: function (inputs, cb) {
         console.error('retrieving club by id: '+inputs.id);
         // Create a user
@@ -52,5 +51,22 @@ module.exports = {
                 id: inputs.id
             });
         team.exec(cb);
+    },
+
+    /**
+     * Check validness of a login using the provided inputs.
+     * But encrypt the password first.
+     *
+     * @param  {Object}   inputs
+     *                     • email    {String}
+     *                     • password {String}
+     * @param  {Function} cb
+     */
+    createTeam: function (inputs, cb) {
+        console.error('creating team: '+inputs.title);
+        // Create a player
+        Team.create({
+            title: inputs.title
+        }).exec(cb);
     }
 };
